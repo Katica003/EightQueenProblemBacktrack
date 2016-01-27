@@ -1,6 +1,3 @@
-// ---------------------------------
-// jo valtozat
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +8,23 @@ namespace Backtrack
 {
     class Program
     {
-        static void Kiiratas(int[] ktömb)
+        static void KiiratasTömb(int[] ktömb)
         {
             for (int i = 0; i < ktömb.Count(); i++)
             {
                 Console.Write(ktömb[i]);
             }
+            Console.WriteLine();
+        }
+
+        static void KiiratasList(List<int[]> kList)
+        {
+
+            for (int i = 0; i < kList.Count; i++)
+            {
+                KiiratasTömb(kList[i]);
+            }
+
             Console.WriteLine();
         }
 
@@ -61,12 +69,11 @@ namespace Backtrack
             return result;
         }
 
-        
-
         static void Main(string[] args)
         {
             int n = 8;
             int[] table = new int[n];
+            List<int[]> Solutions = new List<int[]>();
 
             for (int i = 0; i < table.Count(); i++)
             {
@@ -100,13 +107,18 @@ namespace Backtrack
 
                 if (oszlop == 8)
                 {
-                    Kiiratas(table);
+                    //KiiratasTömb(table);
+                    Solutions.Add((int[])table.Clone());
                     oszlop--;
                     table[oszlop]++;
                 }
             }
 
-            
+            KiiratasList(Solutions);
+
+            //int[] a = new int[] { 1, 2, 3 };
+            //int[] b = new int[] { 1, 5, 3 };
+            //console.writeline(enumerable.SequenceEqual(a, b));
 
             Console.ReadKey();
         }
