@@ -1,5 +1,6 @@
-//-----------------------------------------------------
-//# Mukodo Valtozat 1.0 #
+// ---------------------------------
+// jo valtozat
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,23 @@ namespace Backtrack
             return rightPlace;
         }
 
+        static bool isAllEight(int[] table)
+        {
+            bool result = true;
+
+            for (int i = 0; i < 8; i++)
+            {
+                if (table[i] != 8)
+                {
+                    result = false;
+                }
+            }
+
+            return result;
+        }
+
+        
+
         static void Main(string[] args)
         {
             int n = 8;
@@ -55,8 +73,10 @@ namespace Backtrack
                 table[i] = 0;
             }
 
+            //Kiiratas(table);
+
             int oszlop = 0;
-            while ((oszlop >= 0) && (oszlop <= 8))
+            while ((oszlop >= 0) && (table[0] <= 8))
             {
                 if (!isRight(table, oszlop))
                 {
@@ -78,14 +98,18 @@ namespace Backtrack
                     oszlop++;
                 }
 
-    			if (table[oszlop] == 8)
-        		{
-	 				Kiiratas(table);
-	           	 	oszlop--;
-		 			table[oszlop] ++;
-	            }
+                if (oszlop == 8)
+                {
+                    Kiiratas(table);
+                    oszlop--;
+                    table[oszlop]++;
+                }
             }
+
+            
+
             Console.ReadKey();
         }
+
     }
 }
