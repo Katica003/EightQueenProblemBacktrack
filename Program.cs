@@ -117,14 +117,22 @@ namespace Backtrack
             KiiratasList(Solutions);
             Console.WriteLine("---------");
 
-
-
-            for (int l = 0; l < Solutions.Count; l++)
+	for (int l = 0; l < Solutions.Count; l++)
             {
                 for (int k = 0; k < 8; k++)
                 {
                     elforgatottFelallasFirst[8 - Solutions[l][k]] = k + 1;
                 }
+                for (int k = 0; k < 8; k++)
+                {
+                    elforgatottFelallasSecond[8 - elforgatottFelallasFirst[k]] = k + 1;
+                }
+                for (int k = 0; k < 8; k++)
+                {
+                    elforgatottFelallasThird[8 - elforgatottFelallasSecond[k]] = k + 1;
+                }
+
+
 
                 for (int i = 0; i < Solutions.Count; i++)
 			    {
@@ -132,12 +140,29 @@ namespace Backtrack
                     {
                         Solutions.Remove(Solutions[i]);                
                     }
-			    }
+                }
+                for (int i = 0; i < Solutions.Count; i++)
+                {
+                    if (Enumerable.SequenceEqual(elforgatottFelallasSecond, Solutions[i]))
+                    {
+                        Solutions.Remove(Solutions[i]);
+                    }
+                }
+                for (int i = 0; i < Solutions.Count; i++)
+                {
+                    if (Enumerable.SequenceEqual(elforgatottFelallasThird, Solutions[i]))
+                    {
+                        Solutions.Remove(Solutions[i]);
+                    }
+                }
+
             }
 
             KiiratasList(Solutions);
+            Console.WriteLine("---------");
+            Console.WriteLine(Solutions.Count);
+            Console.WriteLine("---------");
             
-            //KiiratasTömb(elforgatottFelallasFirst);
 
             //int[] a = new int[] { 1, 2, 3 };
             //int[] b = new int[] { 1, 5, 3 };
