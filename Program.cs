@@ -74,6 +74,14 @@ namespace Backtrack
             int n = 8;
             int[] table = new int[n];
             List<int[]> Solutions = new List<int[]>();
+            int[] elforgatottFelallasFirst = new int[n];
+            int[] elforgatottFelallasSecond = new int[n];
+            int[] elforgatottFelallasThird = new int[n];
+            int[] mirror = new int[n];
+            int[] mirror1 = new int[n];
+            int[] mirror2 = new int[n];
+            int[] mirror3 = new int[n];
+           
 
             for (int i = 0; i < table.Count(); i++)
             {
@@ -114,31 +122,58 @@ namespace Backtrack
                 }
             }
 
-            KiiratasList(Solutions);
-            Console.WriteLine("---------");
+            //KiiratasList(Solutions);
+            //Console.WriteLine("---------");
 
-	for (int l = 0; l < Solutions.Count; l++)
+            /*for (int k = 0; k < 8; k++)
             {
+                mirror[7 - k] = Solutions[0][k];
+            }
+            KiiratasTömb(mirror);
+            Console.WriteLine("---------");*/
+
+            for (int l = 0; l < Solutions.Count; l++)
+            {
+                for (int k = 0; k < 8; k++)
+                {
+                    mirror[7 - k] = Solutions[l][k];
+                }
+
                 for (int k = 0; k < 8; k++)
                 {
                     elforgatottFelallasFirst[8 - Solutions[l][k]] = k + 1;
                 }
                 for (int k = 0; k < 8; k++)
                 {
+                    mirror1[7 - k] = elforgatottFelallasFirst[k];
+                }
+
+                for (int k = 0; k < 8; k++)
+                {
                     elforgatottFelallasSecond[8 - elforgatottFelallasFirst[k]] = k + 1;
+                }
+                for (int k = 0; k < 8; k++)
+                {
+                    mirror2[7 - k] = elforgatottFelallasSecond[k];
                 }
                 for (int k = 0; k < 8; k++)
                 {
                     elforgatottFelallasThird[8 - elforgatottFelallasSecond[k]] = k + 1;
                 }
+                for (int k = 0; k < 8; k++)
+                {
+                    mirror3[7 - k] = elforgatottFelallasThird[k];
+                }
+
+
 
 
 
                 for (int i = 0; i < Solutions.Count; i++)
-			    {
-			        if (Enumerable.SequenceEqual(elforgatottFelallasFirst, Solutions[i]))
+                {
+                    if (Enumerable.SequenceEqual(elforgatottFelallasFirst, Solutions[i]))
                     {
-                        Solutions.Remove(Solutions[i]);                
+                        Solutions.Remove(Solutions[i]);
                     }
                 }
                 for (int i = 0; i < Solutions.Count; i++)
@@ -156,13 +191,43 @@ namespace Backtrack
                     }
                 }
 
+                for (int i = 0; i < Solutions.Count; i++)
+                {
+                    if (Enumerable.SequenceEqual(mirror, Solutions[i]))
+                    {
+                        Solutions.Remove(Solutions[i]);
+                    }
+                }
+                for (int i = 0; i < Solutions.Count; i++)
+                {
+                    if (Enumerable.SequenceEqual(mirror1, Solutions[i]))
+                    {
+                        Solutions.Remove(Solutions[i]);
+                    }
+                }
+                for (int i = 0; i < Solutions.Count; i++)
+                {
+                    if (Enumerable.SequenceEqual(mirror2, Solutions[i]))
+                    {
+                        Solutions.Remove(Solutions[i]);
+                    }
+                }
+                for (int i = 0; i < Solutions.Count; i++)
+                {
+                    if (Enumerable.SequenceEqual(mirror3, Solutions[i]))
+                    {
+                        Solutions.Remove(Solutions[i]);
+                    }
+                }
+
+
             }
 
             KiiratasList(Solutions);
             Console.WriteLine("---------");
             Console.WriteLine(Solutions.Count);
             Console.WriteLine("---------");
-            
+
 
             //int[] a = new int[] { 1, 2, 3 };
             //int[] b = new int[] { 1, 5, 3 };
