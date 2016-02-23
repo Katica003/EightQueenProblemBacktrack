@@ -81,14 +81,11 @@ namespace Backtrack
             int[] mirror1 = new int[n];
             int[] mirror2 = new int[n];
             int[] mirror3 = new int[n];
-           
 
             for (int i = 0; i < table.Count(); i++)
             {
                 table[i] = 0;
             }
-
-            //Kiiratas(table);
 
             int oszlop = 0;
             while ((oszlop >= 0) && (table[0] <= 8))
@@ -115,22 +112,11 @@ namespace Backtrack
 
                 if (oszlop == 8)
                 {
-                    //KiiratasTömb(table);
                     Solutions.Add((int[])table.Clone());
                     oszlop--;
                     table[oszlop]++;
                 }
             }
-
-            //KiiratasList(Solutions);
-            //Console.WriteLine("---------");
-
-            /*for (int k = 0; k < 8; k++)
-            {
-                mirror[7 - k] = Solutions[0][k];
-            }
-            KiiratasTömb(mirror);
-            Console.WriteLine("---------");*/
 
             for (int l = 0; l < Solutions.Count; l++)
             {
@@ -138,7 +124,6 @@ namespace Backtrack
                 {
                     mirror[7 - k] = Solutions[l][k];
                 }
-
                 for (int k = 0; k < 8; k++)
                 {
                     elforgatottFelallasFirst[8 - Solutions[l][k]] = k + 1;
@@ -167,71 +152,62 @@ namespace Backtrack
 
 
 
-
-
                 for (int i = 0; i < Solutions.Count; i++)
                 {
-                    if (Enumerable.SequenceEqual(elforgatottFelallasFirst, Solutions[i]))
+                    if (i != l && Enumerable.SequenceEqual(elforgatottFelallasFirst, Solutions[i]))
                     {
                         Solutions.Remove(Solutions[i]);
                     }
                 }
                 for (int i = 0; i < Solutions.Count; i++)
                 {
-                    if (Enumerable.SequenceEqual(elforgatottFelallasSecond, Solutions[i]))
+                    if (i != l && Enumerable.SequenceEqual(elforgatottFelallasSecond, Solutions[i]))
                     {
                         Solutions.Remove(Solutions[i]);
                     }
                 }
                 for (int i = 0; i < Solutions.Count; i++)
                 {
-                    if (Enumerable.SequenceEqual(elforgatottFelallasThird, Solutions[i]))
-                    {
-                        Solutions.Remove(Solutions[i]);
-                    }
-                }
-
-                for (int i = 0; i < Solutions.Count; i++)
-                {
-                    if (Enumerable.SequenceEqual(mirror, Solutions[i]))
-                    {
-                        Solutions.Remove(Solutions[i]);
-                    }
-                }
-                for (int i = 0; i < Solutions.Count; i++)
-                {
-                    if (Enumerable.SequenceEqual(mirror1, Solutions[i]))
-                    {
-                        Solutions.Remove(Solutions[i]);
-                    }
-                }
-                for (int i = 0; i < Solutions.Count; i++)
-                {
-                    if (Enumerable.SequenceEqual(mirror2, Solutions[i]))
-                    {
-                        Solutions.Remove(Solutions[i]);
-                    }
-                }
-                for (int i = 0; i < Solutions.Count; i++)
-                {
-                    if (Enumerable.SequenceEqual(mirror3, Solutions[i]))
+                    if (i != l && Enumerable.SequenceEqual(elforgatottFelallasThird, Solutions[i]))
                     {
                         Solutions.Remove(Solutions[i]);
                     }
                 }
 
-
+                for (int i = 0; i < Solutions.Count; i++)
+                {
+                    if (i != l && Enumerable.SequenceEqual(mirror, Solutions[i]))
+                    {
+                        Solutions.Remove(Solutions[i]);
+                    }
+                }
+                for (int i = 0; i < Solutions.Count; i++)
+                {
+                    if (i != l && Enumerable.SequenceEqual(mirror1, Solutions[i]))
+                    {
+                        Solutions.Remove(Solutions[i]);
+                    }
+                }
+                for (int i = 0; i < Solutions.Count; i++)
+                {
+                    if (i != l && Enumerable.SequenceEqual(mirror2, Solutions[i]))
+                    {
+                        Solutions.Remove(Solutions[i]);
+                    }
+                }
+                for (int i = 0; i < Solutions.Count; i++)
+                {
+                    if (i != l && Enumerable.SequenceEqual(mirror3, Solutions[i]))
+                    {
+                        Solutions.Remove(Solutions[i]);
+                    }
+                }
             }
-
+            Console.WriteLine("---------");
             KiiratasList(Solutions);
             Console.WriteLine("---------");
             Console.WriteLine(Solutions.Count);
             Console.WriteLine("---------");
-
-
-            //int[] a = new int[] { 1, 2, 3 };
-            //int[] b = new int[] { 1, 5, 3 };
-            //console.writeline(enumerable.SequenceEqual(a, b));
 
             Console.ReadKey();
         }
